@@ -9,9 +9,12 @@ const bookingRoutes=require("./routes/bookingRoutes");
 const userRoutes=require("./routes/userRoutes");
 const cookie_parser=require("cookie-parser");
 const auth= require("./middleware/authMiddleware");
+const cors=require("cors");
 //set up middleware
 app.use(cookie_parser());
 app.use(express.json());
+//use of cors to comunicate with the backend
+app.use(cors())
 
 //connect the database
 connectDB();

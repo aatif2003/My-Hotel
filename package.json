@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon server/server.js"
+    "server": "nodemon server/server.js",
+    "admin": "npm run start --prefix admin",
+    "dev": "concurrently \"npm run server\" \"npm run admin\""
   },
   "keywords": [],
   "author": "",
@@ -12,7 +14,10 @@
   "description": "",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "concurrently": "^7.6.0",
     "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "create-react-app": "^5.1.0",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
