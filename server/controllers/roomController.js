@@ -23,7 +23,8 @@ const createRooms = async (req, res, next) => {
       res.status(400);
       throw new Error("There was a problem in creating the room");
     }
-    return res.status(201).json(room);
+    const rooms=await Room.find()
+    return res.status(201).json(rooms);
   } catch (err) {
     next(err);
   }

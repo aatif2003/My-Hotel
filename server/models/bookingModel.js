@@ -5,7 +5,7 @@ const BookingSchema = new mongoose.Schema(
     roomid: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "Room" // (optional) reference to Room model
+      ref: "Room" 
     },
     name: {
       type: String,

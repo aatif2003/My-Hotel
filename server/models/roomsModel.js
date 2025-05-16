@@ -24,7 +24,11 @@ const roomSchema = new mongoose.Schema({
         default: []
       }
     }
-  ]
+  ],
+  images: {
+    type: [String], // <-- This allows storing image URLs as an array of strings
+    default: []
+  }
 });
 
 module.exports = mongoose.model("Room", roomSchema);

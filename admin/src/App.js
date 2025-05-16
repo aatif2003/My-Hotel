@@ -5,6 +5,9 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Header from "./component/Header/Header";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import CreateRoom from "./pages/createRoom";
+import Rooms from "./pages/Rooms/Rooms";
+import Room from "./pages/Room/Room";
 
 export default function App() {
   return (
@@ -16,6 +19,9 @@ export default function App() {
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
+          <Route path="/rooms/create" element={<CreateRoom />} />
+           <Route path="/rooms" element={<Rooms />} />
+             <Route path="/room/all/:id" element={<Room />} />
         </Routes>
       </Router>
     </div>

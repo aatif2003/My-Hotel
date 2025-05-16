@@ -4,7 +4,7 @@ const { getBooking, createBooking, updatedBooking, deletedBooking, getSingleBook
 const auth = require("../middleware/authMiddleware"); 
 
 // get all the bookings
-router.get("/", auth, getBooking);
+router.get("/",auth,  getBooking);
 // create the booking
 router.post("/", auth, createBooking);
 // update the booking
