@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteRoom } from "../../features/room/roomSlice";
 import "./Room.scss";
 
 const Room = () => {
+  const user = useSelector((state) => state.auth.user?.user);
   const { id } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [room, setRoom] = useState(null);
   const [error, setError] = useState(null);
 
@@ -12,11 +18,7 @@ const Room = () => {
       try {
         const API_BASE = process.env.REACT_APP_API_BASE || "";
         const res = await fetch(`${API_BASE}/api/rooms/${id}`);
-        
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         const data = await res.json();
         setRoom(data);
         setError(null);
@@ -29,6 +31,17 @@ const Room = () => {
 
     getRoom();
   }, [id]);
+
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete this room?")) {
+      try {
+        await dispatch(deleteRoom(id)).unwrap();
+        navigate("/rooms");
+      } catch (err) {
+        alert("Failed to delete room: " + err);
+      }
+    }
+  };
 
   const formatCurrency = (amount) => {
     try {
@@ -64,7 +77,7 @@ const Room = () => {
             <div className="image-grid">
               {room.images.map((url, i) => (
                 <img
-                  key={url} // Assuming URLs are unique
+                  key={url}
                   src={url}
                   alt={`${room.name} - Image ${i + 1}`}
                   className="room-image"
@@ -103,6 +116,13 @@ const Room = () => {
               </div>
             ))}
           </div>
+
+          {user?.isadmin && (
+            <>
+              <Link to={`/room/edit/${room._id}`}>Edit Room</Link> <br />
+              <button onClick={handleDelete} className="delete-btn">Delete Room</button>
+            </>
+          )}
         </div>
       ) : (
         !error && <p className="loading">Loading room data...</p>
