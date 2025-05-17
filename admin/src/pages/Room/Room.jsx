@@ -12,6 +12,7 @@ const Room = () => {
 
   const [room, setRoom] = useState(null);
   const [error, setError] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const getRoom = async () => {
@@ -31,6 +32,18 @@ const Room = () => {
 
     getRoom();
   }, [id]);
+
+  // Image slider effect
+  useEffect(() => {
+    if (room?.images?.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prevIndex) =>
+          (prevIndex + 1) % room.images.length
+        );
+      }, 3000); // Change image every 3 seconds
+      return () => clearInterval(interval);
+    }
+  }, [room]);
 
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this room?")) {
@@ -74,15 +87,12 @@ const Room = () => {
           {room.des && <p className="description">{room.des}</p>}
 
           {room.images?.length > 0 && (
-            <div className="image-grid">
-              {room.images.map((url, i) => (
-                <img
-                  key={url}
-                  src={url}
-                  alt={`${room.name} - Image ${i + 1}`}
-                  className="room-image"
-                />
-              ))}
+            <div className="custom-carousel">
+              <img
+                src={room.images[currentIndex]}
+                alt={`Room ${room.name}`}
+                className="carousel-image"
+              />
             </div>
           )}
 
@@ -120,7 +130,9 @@ const Room = () => {
           {user?.isadmin && (
             <>
               <Link to={`/room/edit/${room._id}`}>Edit Room</Link> <br />
-              <button onClick={handleDelete} className="delete-btn">Delete Room</button>
+              <button onClick={handleDelete} className="delete-btn">
+                Delete Room
+              </button>
             </>
           )}
         </div>
