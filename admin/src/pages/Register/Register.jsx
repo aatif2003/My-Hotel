@@ -7,7 +7,7 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
-  const { user, isSucess } = useSelector((state) => state.auth);
+  const { user, isSuccess } = useSelector((state) => state.auth);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -18,11 +18,11 @@ const Register = () => {
   const { name, email, password } = formData;
 
   useEffect(() => {
-    if (isSucess) {
+    if (isSuccess) {
       navigate("/login");
       dispatch(reset()); 
     }
-  }, [isSucess, user, dispatch, navigate]); 
+  }, [isSuccess, user, dispatch, navigate]); 
 
   const handleChange = (e) => {
     setFormData((prevState) => ({

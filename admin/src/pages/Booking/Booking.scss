@@ -1,0 +1,30 @@
+.booking-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  background-color: #f9fafb;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+  .heading {
+    font-size: 2rem;
+    color: #1f2937;  // dark gray
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .detail {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #374151; // medium gray
+
+    strong {
+      color: #111827; // almost black
+      width: 140px;
+      display: inline-block;
+    }
+  }
+}
+button{
+  margin: 5px;
+}

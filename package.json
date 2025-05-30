@@ -6,7 +6,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server/server.js",
     "admin": "npm run start --prefix admin",
-    "dev": "concurrently \"npm run server\" \"npm run admin\""
+    "client": "npm run start --prefix client",
+    "dev-admin": "concurrently \"npm run server\" \"npm run admin\"",
+    "dev-client": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
@@ -22,6 +24,7 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.13.3",
-    "react-responsive-carousel": "^3.2.23"
+    "react-responsive-carousel": "^3.2.23",
+    "sass": "^1.89.0"
   }
 }

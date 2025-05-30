@@ -17,16 +17,28 @@ const getBooking = async (req, res, next) => {
 // Create a booking
 const createBooking = async (req, res, next) => {
   try {
-    const booking = await Booking.create(req.body);
+    const { roomId, name, email, checkInDate, checkoutDate } = req.body;
+
+    const booking = await Booking.create({
+      roomId,
+    
+      name,
+      email,
+      checkInDate,
+      checkoutDate,
+    });
+
     if (!booking) {
       res.status(400);
       throw new Error("Cannot book the room");
     }
+
     return res.status(201).json(booking);
   } catch (err) {
     next(err);
   }
 };
+
 
 // Update a booking
 const updatedBooking = async (req, res, next) => {

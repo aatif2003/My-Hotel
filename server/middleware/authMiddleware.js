@@ -1,38 +1,26 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
-const cookies=require("cookie-parser")
 
 const auth = async (req, res, next) => {
   try {
-    const token = req.cookies.jwt;
+    const token = req.cookies?.jwt;
 
     if (!token) {
-      return res.status(401).json({
-        message: "Not authorized, token missing",
-      });
+      return res.status(401).json({ message: "Not authorized, token missing" });
     }
 
-    const data = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    const user = await User.findOne({ _id: data.id }); // correct query
-
+    const user = await User.findById(decoded.id);
     if (!user) {
-      return res.status(401).json({
-        message: "Not authorized, user not found",
-      });
+      return res.status(401).json({ message: "Not authorized, user not found" });
     }
 
-    req.user = user; // Attach user to request (optional but useful)
-
-    next(); // move to next middleware
+    req.user = user;
+    next();
   } catch (err) {
-    return res.status(401).json({
-      message: "Not authorized, token invalid",
-      error: err.message,
-    });
+    return res.status(401).json({ message: "Not authorized, token invalid", error: err.message });
   }
 };
 
-
-
-module.exports = auth
+module.exports = auth;

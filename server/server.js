@@ -14,12 +14,16 @@ const cors=require("cors");
 app.use(cookie_parser());
 app.use(express.json());
 //use of cors to comunicate with the backend
-app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:3000', // your frontend URL
+  credentials: true
+}));
+
 
 //connect the database
 connectDB();
 //routes for the auth validation
-app.use("/auth",auth)
+// app.use("/auth",auth)
 //setting up the routes for the rooms
 app.use("/api/rooms",roomRoutes);
 //setting up the routes for the booking the rooms

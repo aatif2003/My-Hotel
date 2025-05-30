@@ -9,6 +9,7 @@ import CreateRoom from "./pages/createRoom";
 import Rooms from "./pages/Rooms/Rooms";
 import Room from "./pages/Room/Room";
 import Edit from "./pages/Edit/Edit";
+import Booking from "./pages/Booking/Booking";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/rooms" element={<Rooms />} />
           <Route path="/room/all/:id" element={<Room />} />
           <Route path="/room/edit/:id" element={<Edit/>} />
+          <Route path="/booking/:id" element={<Booking/>} />
         </Routes>
         
       </Router>

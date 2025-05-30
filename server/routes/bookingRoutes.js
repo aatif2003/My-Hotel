@@ -4,14 +4,14 @@ const { getBooking, createBooking, updatedBooking, deletedBooking, getSingleBook
 const auth = require("../middleware/authMiddleware"); 
 
 // get all the bookings
-router.get("/",auth,  getBooking);
+router.get("/",  getBooking);
 // create the booking
-router.post("/", auth, createBooking);
+router.post("/",createBooking);
 // update the booking
 router.put("/:id", auth, updatedBooking);
 // delete the booking
 router.delete("/:id", auth, deletedBooking);
 // get a single booking
-router.get("/:id", auth, getSingleBooking);
+router.get("/:id", getSingleBooking);
 
 module.exports = router;

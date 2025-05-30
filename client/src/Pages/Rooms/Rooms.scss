@@ -1,0 +1,49 @@
+.room-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.room-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.room-image-wrapper {
+  height: 180px;
+  overflow: hidden;
+}
+
+.room-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.room-info {
+  padding: 1rem;
+}
+
+.room-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: #222;
+}
+
+.room-price {
+  font-size: 0.95rem;
+  color: #555;
+  margin-top: 0.5rem;
+}
